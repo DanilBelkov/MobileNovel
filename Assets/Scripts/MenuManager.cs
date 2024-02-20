@@ -8,16 +8,11 @@ using Zenject;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _resultManager;
-
     [Inject] private Player _player;
+    [Inject] private DiContainer _diContainer;
 
     public static event Action<int> OnLoadDialogStep;
 
-    private void Awake()
-    {
-        ShowResults(false);
-    }
     public void LoadDialogStep(int indexStep)
     {
         try
@@ -48,20 +43,17 @@ public class MenuManager : MonoBehaviour
     /// Set active result panel on UI
     /// </summary>
     /// <param name="visible"></param>
-    public void ShowResults(bool visible)
+    public void OpenResults()
     {
-        _resultManager.SetActive(visible);
+        _diContainer.InstantiatePrefabResource("Prefabs/ResultsPanel", parentTransform: transform.parent);
     }
     public void CleanSaves()
     {
         BinarySerializer.CleanData();
     }
-    public void OpenMenu()
-    {
-        gameObject.SetActive(true);
-    }
+
     public void CloseMenu()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

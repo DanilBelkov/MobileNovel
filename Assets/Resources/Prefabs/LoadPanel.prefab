@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f0416572f5cd548a3865e395b3783a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resultManager: {fileID: 0}
 --- !u!1 &1614738643296747500
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,8 +726,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6553208401421446103}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: ShowResults
-        m_Mode: 6
+        m_MethodName: OpenResults
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -7,6 +7,8 @@ using Zenject;
 
 public class SelectedHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject _canvas;
+    [SerializeField] private GameObject _prefab;
 
     [SerializeField] private GameObject _questionPanel;
 
@@ -22,6 +24,7 @@ public class SelectedHandler : MonoBehaviour
     private DialogStepGenerator _generator;
 
     [Inject] private Player _player;
+    [Inject] private DiContainer _diConainer;
 
     public static event Action<bool?> OnSetTimer;
 
@@ -46,6 +49,10 @@ public class SelectedHandler : MonoBehaviour
         TimerManager.OnMissDialog -= OnMissDialodStep;
     }
 
+    public void OpenMenu()
+    {
+        _diConainer.InstantiatePrefabResource("Prefabs/LoadPanel", parentTransform: _canvas.transform);
+    }
     public void OnAnswerSelected(int indexAnswer)
     {
         _generator.SaveDataPlayer(_player);

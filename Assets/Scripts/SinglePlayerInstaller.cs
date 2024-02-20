@@ -5,6 +5,6 @@ public class SinglePlayerInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<Player>().FromNew().AsSingle().NonLazy(); 
+        Container.Bind<Player>().FromNew().AsSingle().NonLazy();
     }
 }

@@ -11,7 +11,7 @@ public class ResultManager : MonoBehaviour
 
     [Inject] private Player _player;
 
-    private void OnEnable()
+    private void Awake()
     {
         ShowResult();
     }
@@ -27,6 +27,6 @@ public class ResultManager : MonoBehaviour
 
     public void Cancel()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
