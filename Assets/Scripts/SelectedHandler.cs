@@ -48,7 +48,8 @@ public class SelectedHandler : MonoBehaviour
 
     public void OnAnswerSelected(int indexAnswer)
     {
-        _generator.SaveAnswer(indexAnswer, _player);
+        _generator.SaveDataPlayer(_player);
+        _generator.ApplyAnswer(--indexAnswer);
         NextDialogStep();
     }
     private void OnLoadDialogStep(int indexStep)
@@ -70,7 +71,8 @@ public class SelectedHandler : MonoBehaviour
     }
     private void OnMissDialodStep()
     {
-        _generator.SaveAnswer(0, _player);
+        _generator.SaveDataPlayer(_player);
+        _generator.ApplyAnswer(0);
         NextDialogStep();
     }
     private void NextDialogStep()

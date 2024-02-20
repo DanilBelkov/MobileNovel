@@ -21,7 +21,7 @@ namespace Assets.Scripts
             BinarySerializer.FileName = "dataGame.dat";
             BinarySerializer.CleanData();
         }
-        public void SaveAnswer(int indexAswer, Player playerData)
+        public void ApplyAnswer(int indexAswer)
         {
             try
             {
@@ -31,11 +31,19 @@ namespace Assets.Scripts
                 step.SavedAnswer = step.Answers[indexAswer];
                 OnChangedMood(step.SavedAnswer.Points);
                 OnChangedMoney(step.SavedAnswer.Money);
+                
+            }
+            catch
+            { throw; }
+        }
+        public void SaveDataPlayer(Player playerData)
+        {
+            try
+            {
                 var savedData = new DataGame();
                 savedData.DialogStepId = playerData.CurrentDialogStepId = _currentStepIndex;
                 savedData.MoodValue = playerData.MoodValue;
                 savedData.Money = playerData.Money;
-                
 
                 BinarySerializer.Serialize(savedData);
             }

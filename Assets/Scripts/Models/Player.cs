@@ -10,17 +10,15 @@ namespace Assets.Scripts.Models
         public int Money { get => _money; set { _money = value; OnUpdate(); } }
 
         private int _moodValue;
-        private int _money;
+        private int _money = 534;
 
-        public Player()
-        {
-            SetOnDefaultValue();
-        }
         public void SetOnDefaultValue()
         {
             CurrentDialogStepId = 0;
-            MoodValue = 0;
-            Money = 534;
+            _moodValue = 0;
+            _money = 534;
+            OnUpdate();
         }
+
     }
 }

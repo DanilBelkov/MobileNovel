@@ -24,7 +24,9 @@ public class MenuManager : MonoBehaviour
         {
             if (indexStep < 0) return;
             else if (indexStep == 0)
+            {
                 _player.SetOnDefaultValue();
+            }
             else
             {
                 List<DataGame> dataList = BinarySerializer.Deserialize();
