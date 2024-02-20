@@ -1,7 +1,9 @@
 using Assets.Scripts;
+using Assets.Scripts.Models;
 using System;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 public class SelectedHandler : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class SelectedHandler : MonoBehaviour
     private TextMeshProUGUI _answerPanelText_3;
 
     private DialogStepGenerator _generator;
+
+    [Inject] private Player _player;
 
     public static event Action<bool?> OnSetTimer;
 
@@ -44,7 +48,7 @@ public class SelectedHandler : MonoBehaviour
 
     public void OnAnswerSelected(int indexAnswer)
     {
-        _generator.SaveAnswer(--indexAnswer);
+        _generator.SaveAnswer(indexAnswer, _player);
         NextDialogStep();
     }
     private void OnLoadDialogStep(int indexStep)
@@ -52,6 +56,10 @@ public class SelectedHandler : MonoBehaviour
         SetDialogStep(_generator.LoadStep(indexStep));
         SetActiveDialog(true);
     }
+    /// <summary>
+    /// Set UI text in dialog step 
+    /// </summary>
+    /// <param name="step">Dialog step data</param>
     private void SetDialogStep(DialogStep step)
     {
         _questionPanelText.text = step?.Question;
@@ -62,7 +70,7 @@ public class SelectedHandler : MonoBehaviour
     }
     private void OnMissDialodStep()
     {
-        _generator.SaveAnswer(0);
+        _generator.SaveAnswer(0, _player);
         NextDialogStep();
     }
     private void NextDialogStep()

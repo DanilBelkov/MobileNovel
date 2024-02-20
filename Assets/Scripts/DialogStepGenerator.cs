@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Models;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -14,15 +13,15 @@ namespace Assets.Scripts
         private int _currentStepIndex = 0;
 
         private DialogStep[] _steps;
-        
         public int CurrentStepIndex => _currentStepIndex;
         public DialogStepGenerator()
         {
             InitAllSteps();
             BinarySerializer.PathString = Path.Combine(Application.dataPath, "Data");
             BinarySerializer.FileName = "dataGame.dat";
+            BinarySerializer.CleanData();
         }
-        public void SaveAnswer(int indexAswer)
+        public void SaveAnswer(int indexAswer, Player playerData)
         {
             try
             {
@@ -33,10 +32,9 @@ namespace Assets.Scripts
                 OnChangedMood(step.SavedAnswer.Points);
                 OnChangedMoney(step.SavedAnswer.Money);
                 var savedData = new DataGame();
-                var player = Player.InitializePlayer();
-                savedData.DialogStepId = player.CurrentDialogStepId = _currentStepIndex;
-                savedData.MoodValue = player.MoodValue;
-                savedData.Money = player.Money;
+                savedData.DialogStepId = playerData.CurrentDialogStepId = _currentStepIndex;
+                savedData.MoodValue = playerData.MoodValue;
+                savedData.Money = playerData.Money;
                 
 
                 BinarySerializer.Serialize(savedData);

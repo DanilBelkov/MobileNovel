@@ -1,24 +1,26 @@
-﻿namespace Assets.Scripts.Models
+﻿using System;
+
+namespace Assets.Scripts.Models
 {
     public class Player
     {
-        private static  Player _player;
-
-        public delegate void Update();
-        public static event Update OnUpdate;
+        public static event Action OnUpdate;
         public int CurrentDialogStepId { get; set; }
         public int MoodValue { get => _moodValue; set { _moodValue = value; OnUpdate(); } }
         public int Money { get => _money; set { _money = value; OnUpdate(); } }
 
         private int _moodValue;
-        private int _money = 534;
-        public static Player InitializePlayer()
+        private int _money;
+
+        public Player()
         {
-            if(_player == null)
-                _player = new Player();
-            return _player;
+            SetOnDefaultValue();
         }
-
-
+        public void SetOnDefaultValue()
+        {
+            CurrentDialogStepId = 0;
+            MoodValue = 0;
+            Money = 534;
+        }
     }
 }

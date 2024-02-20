@@ -12,6 +12,13 @@ namespace Assets.Scripts
         public static string PathString { get; set; }
         public static string FileName { get; set; }
         private static string _fullPathFile => Path.Combine(PathString, FileName);
+        /// <summary>
+        /// Check existing path to save file
+        /// </summary>
+        /// <returns>
+        /// true - if exist
+        /// false - if not exist 
+        /// </returns>
         private static bool CheckPath()
         {
             if (!string.IsNullOrEmpty(PathString) && !string.IsNullOrEmpty(FileName) && !File.Exists(_fullPathFile))
@@ -68,6 +75,9 @@ namespace Assets.Scripts
             }
             catch { throw; }
         }
+        /// <summary>
+        /// Clean save data game
+        /// </summary>
         public static void CleanData()
         {
             if (!CheckPath()) return;

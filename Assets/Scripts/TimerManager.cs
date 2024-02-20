@@ -23,6 +23,13 @@ public class TimerManager : MonoBehaviour
     {
         SelectedHandler.OnSetTimer -= SetTimer;
     }
+    /// <summary>
+    /// Start/stop timer
+    /// </summary>
+    /// <param name="value">
+    /// true - start
+    /// false - stop
+    /// </param>
     public void SetTimer(bool? value)
     {
         var defaultValue = value ?? false;
@@ -40,7 +47,6 @@ public class TimerManager : MonoBehaviour
             SetTimer(false);
             return;
         }
-        print(_heightBar + "  " + percentPosition);
         _container.sizeDelta = new Vector2(0, _heightBar * percentPosition / 100);
     }
     private void Update()

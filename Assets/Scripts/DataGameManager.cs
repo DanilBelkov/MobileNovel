@@ -3,6 +3,7 @@ using Assets.Scripts.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class DataGameManager : MonoBehaviour
 {
@@ -11,11 +12,10 @@ public class DataGameManager : MonoBehaviour
 
     private int _maxValue = 100;
     private int _minValue = 0;
-    private Player _player;
+    [Inject] private Player _player;
 
     private void Awake()
     {
-        _player = Player.InitializePlayer();
         UpdateMoodBar();
         UpdateMoneyText();
     }
