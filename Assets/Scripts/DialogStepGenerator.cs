@@ -17,7 +17,7 @@ namespace Assets.Scripts
         public DialogStepGenerator()
         {
             InitAllSteps();
-            BinarySerializer.PathString = Path.Combine(Application.persistentDataPath, "Data");
+            BinarySerializer.PathString = Application.persistentDataPath;
             BinarySerializer.FileName = "dataGame.dat";
             BinarySerializer.CleanData();
         }

@@ -1,8 +1,7 @@
 ﻿using Assets.Scripts.Models;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -21,12 +20,17 @@ namespace Assets.Scripts
         /// </returns>
         private static bool CheckPath()
         {
-            if (!string.IsNullOrEmpty(PathString) && !string.IsNullOrEmpty(FileName) && !File.Exists(_fullPathFile))
+            try
             {
-                File.Create(_fullPathFile);
-                return false;
+                Debug.Log(_fullPathFile);
+                if (!string.IsNullOrEmpty(PathString) && !string.IsNullOrEmpty(FileName) && !File.Exists(_fullPathFile))
+                {
+                    File.Create(_fullPathFile);
+                    return false;
+                }
+                return true;
             }
-            return true;
+            catch { throw new System.Exception("Error about file path"); }
         }
         /// <summary>
         /// Serialize data to binary file
@@ -46,7 +50,7 @@ namespace Assets.Scripts
                     writer.Write(data.Money);
                 }
             }
-            catch { throw; }
+            catch { throw new System.Exception("Error on serialize"); }
         }
 
         /// <summary>
@@ -73,7 +77,7 @@ namespace Assets.Scripts
                 }
                 return list;
             }
-            catch { throw; }
+            catch { throw new System.Exception("Error on deserialize"); }
         }
         /// <summary>
         /// Clean save data game

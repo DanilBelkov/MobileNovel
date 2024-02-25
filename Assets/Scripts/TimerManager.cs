@@ -13,7 +13,7 @@ public class TimerManager : MonoBehaviour
 
     private void Awake()
     {
-        _heightBar = _container.rect.height;//.sizeDelta.y;
+        _heightBar = _container.rect.height;
     }
     private void OnEnable()
     {
