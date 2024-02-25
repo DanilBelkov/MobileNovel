@@ -2228,6 +2228,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 27814459}
     m_Modifications:
+    - target: {fileID: 1142759055026559432, guid: fabe9013b91533f42b3710aac4224ff5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142759055026559432, guid: fabe9013b91533f42b3710aac4224ff5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1478787338235487338, guid: fabe9013b91533f42b3710aac4224ff5, type: 3}
       propertyPath: _speedTimer
       value: 10

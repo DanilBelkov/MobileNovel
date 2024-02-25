@@ -32,11 +32,11 @@ public class MenuManager : MonoBehaviour
                 _player.MoodValue = data.MoodValue;
                 _player.Money = data.Money;
             }
-            OnLoadDialogStep(indexStep);
+            OnLoadDialogStep?.Invoke(indexStep);
             CloseMenu();
         }
         catch
-        { throw; }
+        { throw new Exception("Erorr in load dialog step"); }
 
     }
     /// <summary>

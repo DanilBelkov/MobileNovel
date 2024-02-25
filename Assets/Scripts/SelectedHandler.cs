@@ -74,7 +74,7 @@ public class SelectedHandler : MonoBehaviour
         _answerPanelText_1.text = step?.Answers[0].Text;
         _answerPanelText_2.text = step?.Answers[1].Text;
         _answerPanelText_3.text = step?.Answers[2].Text;
-        OnSetTimer(step?.HasTimer);
+        OnSetTimer?.Invoke(step?.HasTimer);
     }
     private void OnMissDialodStep()
     {
@@ -95,7 +95,7 @@ public class SelectedHandler : MonoBehaviour
         }
         catch
         {
-            throw;
+            throw new Exception("Error in next dialog step");
         }
     }
     private void SetActiveDialog(bool value)

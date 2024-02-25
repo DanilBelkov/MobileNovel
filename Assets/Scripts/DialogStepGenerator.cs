@@ -17,7 +17,7 @@ namespace Assets.Scripts
         public DialogStepGenerator()
         {
             InitAllSteps();
-            BinarySerializer.PathString = Path.Combine(Application.dataPath, "Data");
+            BinarySerializer.PathString = Path.Combine(Application.persistentDataPath, "Data");
             BinarySerializer.FileName = "dataGame.dat";
             BinarySerializer.CleanData();
         }
@@ -29,12 +29,12 @@ namespace Assets.Scripts
 
                 var step = _steps[_currentStepIndex];
                 step.SavedAnswer = step.Answers[indexAswer];
-                OnChangedMood(step.SavedAnswer.Points);
-                OnChangedMoney(step.SavedAnswer.Money);
+                OnChangedMood?.Invoke(step.SavedAnswer.Points);
+                OnChangedMoney?.Invoke(step.SavedAnswer.Money);
                 
             }
             catch
-            { throw; }
+            { throw new Exception("Error apply answer"); }
         }
         public void SaveDataPlayer(Player playerData)
         {
@@ -48,7 +48,7 @@ namespace Assets.Scripts
                 BinarySerializer.Serialize(savedData);
             }
             catch
-            { throw; }
+            { throw new Exception("Error save data"); }
         }
         public DialogStep NextStep()
         {
@@ -60,7 +60,7 @@ namespace Assets.Scripts
                 return null;
             }
             catch
-            { throw; }
+            { throw new Exception("Error next step"); }
         }
         public DialogStep LoadStep(int indexStep)
         {
@@ -75,7 +75,7 @@ namespace Assets.Scripts
                 return null;
             }
             catch
-            { throw; }
+            { throw new Exception("Error load step"); }
         }
         private void InitAllSteps()
         {

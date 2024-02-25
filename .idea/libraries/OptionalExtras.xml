@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="OptionalExtras">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/AutoMocking.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Assets/Plugins/Zenject/OptionalExtras/AutoSubstitute.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
